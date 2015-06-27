@@ -1,0 +1,335 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19nsgd1vex2 a atxa-core:reloFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node19nsgd049x144 .
+
+_:node19nsgd049x144 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#> ;
+	atxa-core:posX "151" ;
+	atxa-core:posY "96" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#$Pot> , <http://www.architexa.com/rdf/jdt-wkspc#$Card> , <http://www.architexa.com/rdf/jdt-wkspc#$Deck> , <http://www.architexa.com/rdf/jdt-wkspc#$Flush> , <http://www.architexa.com/rdf/jdt-wkspc#$Player> , <http://www.architexa.com/rdf/jdt-wkspc#$OnePair> , <http://www.architexa.com/rdf/jdt-wkspc#$TwoPair> , <http://www.architexa.com/rdf/jdt-wkspc#$Straight> , <http://www.architexa.com/rdf/jdt-wkspc#$HandType> , <http://www.architexa.com/rdf/jdt-wkspc#$HighCard> , <http://www.architexa.com/rdf/jdt-wkspc#$RandomInt> , <http://www.architexa.com/rdf/jdt-wkspc#$PokerGame> , <http://www.architexa.com/rdf/jdt-wkspc#$FullHouse> , <http://www.architexa.com/rdf/jdt-wkspc#$Utilities> , <http://www.architexa.com/rdf/jdt-wkspc#$PokerFrame> , <http://www.architexa.com/rdf/jdt-wkspc#$CardVector> , <http://www.architexa.com/rdf/jdt-wkspc#$PokerClient> , <http://www.architexa.com/rdf/jdt-wkspc#$CardDisplay> , <http://www.architexa.com/rdf/jdt-wkspc#$PokerServer> , <http://www.architexa.com/rdf/jdt-wkspc#$FourOfAKind> , <http://www.architexa.com/rdf/jdt-wkspc#$PokerPlayer> , <http://www.architexa.com/rdf/jdt-wkspc#$PlayerVector> , <http://www.architexa.com/rdf/jdt-wkspc#$DrawSelector> , <http://www.architexa.com/rdf/jdt-wkspc#$RankSelector> , <http://www.architexa.com/rdf/jdt-wkspc#$MessageDialog> , <http://www.architexa.com/rdf/jdt-wkspc#$PlayerHandler> , <http://www.architexa.com/rdf/jdt-wkspc#$DrawPokerGame> , <http://www.architexa.com/rdf/jdt-wkspc#$StraightFlush> , <http://www.architexa.com/rdf/jdt-wkspc#$PlayerDisplay> , <http://www.architexa.com/rdf/jdt-wkspc#$ShowdownResult> , <http://www.architexa.com/rdf/jdt-wkspc#$CardPanelLayout> , <http://www.architexa.com/rdf/jdt-wkspc#$HoldemPokerGame> , <http://www.architexa.com/rdf/jdt-wkspc#$PokerTablePanel> , <http://www.architexa.com/rdf/jdt-wkspc#$HandTypeSelector> , <http://www.architexa.com/rdf/jdt-wkspc#$HoldemPokerPlayer> , <http://www.architexa.com/rdf/jdt-wkspc#$PokerLayoutManager> , <http://www.architexa.com/rdf/jdt-wkspc#$PokerServerDisplay> , <http://www.architexa.com/rdf/jdt-wkspc#$DrawSelectorInterface> , <http://www.architexa.com/rdf/jdt-wkspc#$FiveCardStudPokerGame> , <http://www.architexa.com/rdf/jdt-wkspc#$OnePlayerLeftException> , <http://www.architexa.com/rdf/jdt-wkspc#$HandTypeFormatException> , <http://www.architexa.com/rdf/jdt-wkspc#$HandTypeSelectorInterface> , <http://www.architexa.com/rdf/jdt-wkspc#$ThreeOfAKind> , <http://www.architexa.com/rdf/jdt-wkspc#$SevenCardStudPokerGame> .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x145 .
+
+_:node19nsgd049x145 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Pot> ;
+	atxa-core:posX "262" ;
+	atxa-core:posY "415" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x146 .
+
+_:node19nsgd049x146 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Card> ;
+	atxa-core:posX "915" ;
+	atxa-core:posY "415" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x147 .
+
+_:node19nsgd049x147 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Deck> ;
+	atxa-core:posX "596" ;
+	atxa-core:posY "357" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x148 .
+
+_:node19nsgd049x148 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Flush> ;
+	atxa-core:posX "732" ;
+	atxa-core:posY "125" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x149 .
+
+_:node19nsgd049x149 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Player> ;
+	atxa-core:posX "263" ;
+	atxa-core:posY "357" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x150 .
+
+_:node19nsgd049x150 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$OnePair> ;
+	atxa-core:posX "157" ;
+	atxa-core:posY "415" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x151 .
+
+_:node19nsgd049x151 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$TwoPair> ;
+	atxa-core:posX "472" ;
+	atxa-core:posY "299" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x152 .
+
+_:node19nsgd049x152 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Straight> ;
+	atxa-core:posX "157" ;
+	atxa-core:posY "357" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x153 .
+
+_:node19nsgd049x153 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$HandType> ;
+	atxa-core:posX "157" ;
+	atxa-core:posY "241" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x154 .
+
+_:node19nsgd049x154 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$HighCard> ;
+	atxa-core:posX "1019" ;
+	atxa-core:posY "241" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x155 .
+
+_:node19nsgd049x155 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$RandomInt> ;
+	atxa-core:posX "157" ;
+	atxa-core:posY "299" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x156 .
+
+_:node19nsgd049x156 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PokerGame> ;
+	atxa-core:posX "601" ;
+	atxa-core:posY "125" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x157 .
+
+_:node19nsgd049x157 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$FullHouse> ;
+	atxa-core:posX "157" ;
+	atxa-core:posY "183" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x158 .
+
+_:node19nsgd049x158 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Utilities> ;
+	atxa-core:posX "857" ;
+	atxa-core:posY "357" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x159 .
+
+_:node19nsgd049x159 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PokerFrame> ;
+	atxa-core:posX "802" ;
+	atxa-core:posY "299" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x160 .
+
+_:node19nsgd049x160 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$CardVector> ;
+	atxa-core:posX "278" ;
+	atxa-core:posY "241" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x161 .
+
+_:node19nsgd049x161 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PokerClient> ;
+	atxa-core:posX "471" ;
+	atxa-core:posY "125" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x162 .
+
+_:node19nsgd049x162 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$CardDisplay> ;
+	atxa-core:posX "997" ;
+	atxa-core:posY "415" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x163 .
+
+_:node19nsgd049x163 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PokerServer> ;
+	atxa-core:posX "406" ;
+	atxa-core:posY "241" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x164 .
+
+_:node19nsgd049x164 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$FourOfAKind> ;
+	atxa-core:posX "732" ;
+	atxa-core:posY "183" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x165 .
+
+_:node19nsgd049x165 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PokerPlayer> ;
+	atxa-core:posX "576" ;
+	atxa-core:posY "415" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x166 .
+
+_:node19nsgd049x166 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlayerVector> ;
+	atxa-core:posX "969" ;
+	atxa-core:posY "125" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x167 .
+
+_:node19nsgd049x167 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$DrawSelector> ;
+	atxa-core:posX "1110" ;
+	atxa-core:posY "183" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x168 .
+
+_:node19nsgd049x168 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$RankSelector> ;
+	atxa-core:posX "591" ;
+	atxa-core:posY "183" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x169 .
+
+_:node19nsgd049x169 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$MessageDialog> ;
+	atxa-core:posX "1121" ;
+	atxa-core:posY "299" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x170 .
+
+_:node19nsgd049x170 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlayerHandler> ;
+	atxa-core:posX "157" ;
+	atxa-core:posY "125" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x171 .
+
+_:node19nsgd049x171 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$DrawPokerGame> ;
+	atxa-core:posX "683" ;
+	atxa-core:posY "241" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x172 .
+
+_:node19nsgd049x172 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$StraightFlush> ;
+	atxa-core:posX "540" ;
+	atxa-core:posY "241" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x173 .
+
+_:node19nsgd049x173 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PlayerDisplay> ;
+	atxa-core:posX "276" ;
+	atxa-core:posY "183" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x174 .
+
+_:node19nsgd049x174 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$ShowdownResult> ;
+	atxa-core:posX "420" ;
+	atxa-core:posY "183" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x175 .
+
+_:node19nsgd049x175 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$CardPanelLayout> ;
+	atxa-core:posX "851" ;
+	atxa-core:posY "241" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x176 .
+
+_:node19nsgd049x176 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$HoldemPokerGame> ;
+	atxa-core:posX "286" ;
+	atxa-core:posY "299" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x177 .
+
+_:node19nsgd049x177 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PokerTablePanel> ;
+	atxa-core:posX "305" ;
+	atxa-core:posY "125" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x178 .
+
+_:node19nsgd049x178 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$HandTypeSelector> ;
+	atxa-core:posX "680" ;
+	atxa-core:posY "357" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x179 .
+
+_:node19nsgd049x179 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$HoldemPokerPlayer> ;
+	atxa-core:posX "157" ;
+	atxa-core:posY "473" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x180 .
+
+_:node19nsgd049x180 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PokerLayoutManager> ;
+	atxa-core:posX "961" ;
+	atxa-core:posY "357" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x181 .
+
+_:node19nsgd049x181 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$PokerServerDisplay> ;
+	atxa-core:posX "936" ;
+	atxa-core:posY "299" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x182 .
+
+_:node19nsgd049x182 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$DrawSelectorInterface> ;
+	atxa-core:posX "709" ;
+	atxa-core:posY "415" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x183 .
+
+_:node19nsgd049x183 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$FiveCardStudPokerGame> ;
+	atxa-core:posX "579" ;
+	atxa-core:posY "299" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x184 .
+
+_:node19nsgd049x184 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$OnePlayerLeftException> ;
+	atxa-core:posX "345" ;
+	atxa-core:posY "473" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x185 .
+
+_:node19nsgd049x185 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$HandTypeFormatException> ;
+	atxa-core:posX "336" ;
+	atxa-core:posY "415" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x186 .
+
+_:node19nsgd049x186 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$HandTypeSelectorInterface> ;
+	atxa-core:posX "356" ;
+	atxa-core:posY "357" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x187 .
+
+_:node19nsgd049x187 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$ThreeOfAKind> ;
+	atxa-core:posX "819" ;
+	atxa-core:posY "125" .
+
+_:node19nsgd049x144 atxa-core:contains _:node19nsgd049x188 .
+
+_:node19nsgd049x188 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$SevenCardStudPokerGame> ;
+	atxa-core:posX "874" ;
+	atxa-core:posY "183" .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19nsgd1vex2 a atxa-core:reloFile ;
+	atxa-core:contains _:node19nsgd049x145 , _:node19nsgd049x146 , _:node19nsgd049x147 , _:node19nsgd049x148 , _:node19nsgd049x149 , _:node19nsgd049x150 , _:node19nsgd049x151 , _:node19nsgd049x152 , _:node19nsgd049x153 , _:node19nsgd049x154 , _:node19nsgd049x155 , _:node19nsgd049x156 , _:node19nsgd049x157 , _:node19nsgd049x158 , _:node19nsgd049x159 , _:node19nsgd049x160 , _:node19nsgd049x161 , _:node19nsgd049x162 , _:node19nsgd049x163 , _:node19nsgd049x164 , _:node19nsgd049x165 , _:node19nsgd049x166 , _:node19nsgd049x167 , _:node19nsgd049x168 , _:node19nsgd049x169 , _:node19nsgd049x170 , _:node19nsgd049x171 , _:node19nsgd049x172 , _:node19nsgd049x173 , _:node19nsgd049x174 , _:node19nsgd049x175 , _:node19nsgd049x176 , _:node19nsgd049x177 , _:node19nsgd049x178 , _:node19nsgd049x179 , _:node19nsgd049x180 , _:node19nsgd049x181 , _:node19nsgd049x182 , _:node19nsgd049x183 , _:node19nsgd049x184 , _:node19nsgd049x185 , _:node19nsgd049x186 , _:node19nsgd049x187 , _:node19nsgd049x188 , _:node19nsgd049x144 , atxa-core:docRoot , _:node19nsgd049x145 , _:node19nsgd049x146 , _:node19nsgd049x147 , _:node19nsgd049x148 , _:node19nsgd049x149 , _:node19nsgd049x150 , _:node19nsgd049x151 , _:node19nsgd049x152 , _:node19nsgd049x153 , _:node19nsgd049x154 , _:node19nsgd049x155 , _:node19nsgd049x156 , _:node19nsgd049x157 , _:node19nsgd049x158 , _:node19nsgd049x159 , _:node19nsgd049x160 , _:node19nsgd049x161 , _:node19nsgd049x162 , _:node19nsgd049x163 , _:node19nsgd049x164 , _:node19nsgd049x165 , _:node19nsgd049x166 , _:node19nsgd049x167 , _:node19nsgd049x168 , _:node19nsgd049x169 , _:node19nsgd049x170 , _:node19nsgd049x171 , _:node19nsgd049x172 , _:node19nsgd049x173 , _:node19nsgd049x174 , _:node19nsgd049x175 , _:node19nsgd049x176 , _:node19nsgd049x177 , _:node19nsgd049x178 , _:node19nsgd049x179 , _:node19nsgd049x180 , _:node19nsgd049x181 , _:node19nsgd049x182 , _:node19nsgd049x183 , _:node19nsgd049x184 , _:node19nsgd049x185 , _:node19nsgd049x186 , _:node19nsgd049x187 , _:node19nsgd049x188 , _:node19nsgd049x144 , atxa-core:docRoot .
+

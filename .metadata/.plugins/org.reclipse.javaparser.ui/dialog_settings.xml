@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ParseJavaSourceCodeWizard">
+		<item value="true" key="createActivityDiagrams"/>
+		<item value="true" key="parseRecursively"/>
+		<item value="reclipse1" key="classDiagramName"/>
+		<item value="false" key="incrementalParsing"/>
+		<item value="true" key="diagramPerPackage"/>
+	</section>
+</section>

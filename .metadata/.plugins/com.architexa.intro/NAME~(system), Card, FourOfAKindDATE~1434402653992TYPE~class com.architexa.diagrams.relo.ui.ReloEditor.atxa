@@ -1,0 +1,41 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19nsgd1vex1 a atxa-core:reloFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node19nsgd049x8 .
+
+_:node19nsgd049x8 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#> ;
+	atxa-core:posX "164" ;
+	atxa-core:posY "75" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#$Card> , <http://www.architexa.com/rdf/jdt-wkspc#$FourOfAKind> .
+
+_:node19nsgd049x8 atxa-core:contains _:node19nsgd049x9 .
+
+_:node19nsgd049x9 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$Card> ;
+	atxa-core:posX "170" ;
+	atxa-core:posY "104" .
+
+_:node19nsgd049x8 atxa-core:contains _:node19nsgd049x10 .
+
+_:node19nsgd049x10 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$FourOfAKind> ;
+	atxa-core:posX "264" ;
+	atxa-core:posY "229" .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19nsgd1vex1 a atxa-core:reloFile ;
+	atxa-core:contains _:node19nsgd049x9 , _:node19nsgd049x10 , _:node19nsgd049x8 , atxa-core:docRoot , _:node19nsgd049x9 , _:node19nsgd049x10 , _:node19nsgd049x8 , atxa-core:docRoot .
+

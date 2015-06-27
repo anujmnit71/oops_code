@@ -1,0 +1,34 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19o1l4uotx53 a atxa-core:reloFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node19o1i2p4jx41 .
+
+_:node19o1i2p4jx41 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue> ;
+	atxa-core:posX "493" ;
+	atxa-core:posY "159" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$IntegrationTest> .
+
+_:node19o1i2p4jx41 atxa-core:contains _:node19o1i2p4jx42 .
+
+_:node19o1i2p4jx42 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$IntegrationTest> ;
+	atxa-core:posX "499" ;
+	atxa-core:posY "188" .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19o1l4uotx53 a atxa-core:reloFile ;
+	atxa-core:contains _:node19o1i2p4jx42 , _:node19o1i2p4jx41 , atxa-core:docRoot , _:node19o1i2p4jx42 , _:node19o1i2p4jx41 , atxa-core:docRoot .
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;MyNotepad/Class_diagram1.atxa&apos; to &apos;MyNotepad_Class_diagram1.atxa&apos;" description="Rename resource &apos;Class_diagram1.atxa&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Class_diagram1.atxa" name="MyNotepad_Class_diagram1.atxa" stamp="1433284104063" updateReferences="true"/>
+</session>

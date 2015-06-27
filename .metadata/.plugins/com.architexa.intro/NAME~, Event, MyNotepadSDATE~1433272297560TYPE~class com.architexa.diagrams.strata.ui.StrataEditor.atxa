@@ -1,0 +1,60 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-strata: <http://www.architexa.com/rdf/strata#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19mqqv96sx30 a atxa-core:strataFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node19mqchckpx4761 .
+
+_:node19mqchckpx4761 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#(default)> ;
+	atxa-core:containerState "true" , "false" , "false" ;
+	atxa-strata:nestedLayerIndexes ":1,false,false,true:0,false,false,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#(default)> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS> .
+
+_:node19mqchckpx4761 atxa-core:contains _:node19mqchckpx4762 .
+
+_:node19mqchckpx4762 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:0,false,false,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "0" .
+
+atxa-core:docRoot atxa-core:contains _:node19mqchckpx4763 .
+
+_:node19mqchckpx4763 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event> ;
+	atxa-core:containerState "true" , "false" , "false" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:0,false,false,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.awt.event> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event$ActionListener> .
+
+_:node19mqchckpx4763 atxa-core:contains _:node19mqchckpx4764 .
+
+_:node19mqchckpx4764 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event$ActionListener> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:0,false,false,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "0" .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-strata: <http://www.architexa.com/rdf/strata#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19mqqv96sx30 a atxa-core:strataFile ;
+	atxa-core:contains _:node19mqchckpx4762 , _:node19mqchckpx4761 , _:node19mqchckpx4764 , _:node19mqchckpx4763 , atxa-core:docRoot , _:node19mqchckpx4762 , _:node19mqchckpx4761 , _:node19mqchckpx4764 , _:node19mqchckpx4763 , atxa-core:docRoot .
+

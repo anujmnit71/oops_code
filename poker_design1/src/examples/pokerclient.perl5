@@ -1,0 +1,77 @@
+#!/usr/grads/bin/perl
+#
+# pokerclient.perl5: Sample IPP Poker Client in Perl (version 5)
+#
+# George Ferguson, ferguson@cs.rochester.edu,  1 Oct 1998
+# Time-stamp: <Thu Oct  1 17:18:23 EDT 1998 ferguson>
+#
+# All this client does is hook up to the IPP server, echo lines received
+# from the server to stdout, prompt for replies from stdin, and send
+# the replies back to the server.
+#
+
+use IO::Socket;
+
+#
+# Usage
+#
+my $usage = "usage: pokerclient [-server HOST:PORT]\n";
+
+#
+# Defaults
+#
+my $server = 'localhost:9898';
+
+#
+# Parse command line
+#
+while ($#ARGV > 0) {
+    if ($ARGV[0] !~ /^-/) {
+	break;
+    } elsif ($ARGV[0] eq '-server') {
+	if (!$ARGV[1]) {
+	    die($usage);
+	} else {
+	    $server = $ARGV[1];
+	    shift @ARGV;
+	}
+    } else {
+	print STDERR "$0: unknown argument: " . $ARGV[0] . "\n";
+	die($usage);
+    }
+    shift @ARGV;
+}
+
+#
+# Connect to server
+#
+print "Connecting to $server...\n";
+if (!($sock = IO::Socket::INET->new($server))) {
+    die("$0: can't connect to $server: $!\n");
+}
+$sock->autoflush(1);
+print "Connected to $server\n";
+
+#
+# Do forever...
+#
+while (1) {
+    # Read a message (line) from the server
+    $msg = <$sock>;
+    # EOF?
+    last if (!$msg);
+    # Copy to stdout
+    print $msg;
+    # If it has a question mark in it (or is initial message)...
+    if ($msg =~ /\?/ || $msg =~ /^IPP/) {
+	# ...Then read a response line from stdin
+	print "reply: ";
+	my $reply = <STDIN>;
+	# And send it to the server
+	print $sock $reply;
+    }
+}
+
+# Local Variables:
+# mode: perl
+# End:

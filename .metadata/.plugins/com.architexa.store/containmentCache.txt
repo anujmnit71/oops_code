@@ -1,0 +1,1 @@
+http://www.architexa.com/rdf/jdt-wkspc#com.javacodegeeks.examples.junitmavenexample~~~3@@@http://www.architexa.com/rdf/jdt-wkspc#(default)~~~1@@@http://www.architexa.com/rdf/jdt-wkspc#distributed.distributedMST.GHS~~~4@@@http://www.architexa.com/rdf/jdt-wkspc#distributed.GHS.distributedMST~~~2@@@

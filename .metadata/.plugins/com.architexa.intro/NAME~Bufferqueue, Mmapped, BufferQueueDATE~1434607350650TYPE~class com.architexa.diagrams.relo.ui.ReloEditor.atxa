@@ -1,0 +1,201 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+_:node19o1l4uotx54 a atxa-core:reloFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node19o1i2p4jx966 .
+
+_:node19o1i2p4jx966 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue> ;
+	atxa-core:posX "7" ;
+	atxa-core:posY "34" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$IntegrationTest> .
+
+_:node19o1i2p4jx966 atxa-core:contains _:node19o1i2p4jx967 .
+
+_:node19o1i2p4jx967 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue> ;
+	atxa-core:posX "305" ;
+	atxa-core:posY "63" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.capacity()> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.consume()> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.consume(int,)> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.isEmpty()> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.isFull()> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.maxDataLength()> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.next()> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.publish(byte[],)> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.size()> .
+
+_:node19o1i2p4jx967 atxa-core:contains _:node19o1i2p4jx968 .
+
+_:node19o1i2p4jx968 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.capacity()> ;
+	atxa-core:posX "306" ;
+	atxa-core:posY "85" .
+
+_:node19o1i2p4jx967 atxa-core:contains _:node19o1i2p4jx969 .
+
+_:node19o1i2p4jx969 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.consume()> ;
+	atxa-core:posX "306" ;
+	atxa-core:posY "105" .
+
+_:node19o1i2p4jx967 atxa-core:contains _:node19o1i2p4jx970 .
+
+_:node19o1i2p4jx970 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.consume(int,)> ;
+	atxa-core:posX "306" ;
+	atxa-core:posY "125" .
+
+_:node19o1i2p4jx967 atxa-core:contains _:node19o1i2p4jx971 .
+
+_:node19o1i2p4jx971 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.isEmpty()> ;
+	atxa-core:posX "306" ;
+	atxa-core:posY "145" .
+
+_:node19o1i2p4jx967 atxa-core:contains _:node19o1i2p4jx972 .
+
+_:node19o1i2p4jx972 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.isFull()> ;
+	atxa-core:posX "306" ;
+	atxa-core:posY "165" .
+
+_:node19o1i2p4jx967 atxa-core:contains _:node19o1i2p4jx973 .
+
+_:node19o1i2p4jx973 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.maxDataLength()> ;
+	atxa-core:posX "306" ;
+	atxa-core:posY "185" .
+
+_:node19o1i2p4jx967 atxa-core:contains _:node19o1i2p4jx974 .
+
+_:node19o1i2p4jx974 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.next()> ;
+	atxa-core:posX "306" ;
+	atxa-core:posY "205" .
+
+_:node19o1i2p4jx967 atxa-core:contains _:node19o1i2p4jx975 .
+
+_:node19o1i2p4jx975 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.publish(byte[],)> ;
+	atxa-core:posX "306" ;
+	atxa-core:posY "225" .
+
+_:node19o1i2p4jx967 atxa-core:contains _:node19o1i2p4jx976 .
+
+_:node19o1i2p4jx976 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue.size()> ;
+	atxa-core:posX "306" ;
+	atxa-core:posY "245" .
+
+_:node19o1i2p4jx966 atxa-core:contains _:node19o1i2p4jx977 .
+
+_:node19o1i2p4jx977 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$BufferQueue> ;
+	atxa-core:posX "13" ;
+	atxa-core:posY "269" .
+
+_:node19o1i2p4jx966 atxa-core:contains _:node19o1i2p4jx978 .
+
+_:node19o1i2p4jx978 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue$IntegrationTest> ;
+	atxa-core:posX "77" ;
+	atxa-core:posY "138" .
+
+atxa-core:docRoot atxa-core:contains _:node19o1i2p4jx979 .
+
+_:node19o1i2p4jx979 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue.mmapped> ;
+	atxa-core:posX "695" ;
+	atxa-core:posY "44" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue.mmapped> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue.mmapped$MappedBufferQueue> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue.mmapped$MappedBufferQueue> , <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue.mmapped$MappedBufferQueueFactory> .
+
+_:node19o1i2p4jx979 atxa-core:contains _:node19o1i2p4jx980 .
+
+_:node19o1i2p4jx980 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue.mmapped$MappedBufferQueue> ;
+	atxa-core:posX "738" ;
+	atxa-core:posY "267" .
+
+_:node19o1i2p4jx8 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node19o1i2p4jx980 ;
+	rdf:object _:node19o1i2p4jx967 ;
+	atxa-core:bendpoint _:node19o1i2p4jx981 .
+
+_:node19o1i2p4jx981 atxa-core:bpLocation "831,286" ;
+	atxa-core:bpIndex "0" .
+
+_:node19o1i2p4jx8 atxa-core:bendpoint _:node19o1i2p4jx982 .
+
+_:node19o1i2p4jx982 atxa-core:bpLocation "485,286" ;
+	atxa-core:bpIndex "1" .
+
+_:node19o1i2p4jx46 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node19o1i2p4jx980 ;
+	rdf:object _:node19o1i2p4jx977 ;
+	atxa-core:bendpoint _:node19o1i2p4jx983 .
+
+_:node19o1i2p4jx983 atxa-core:bpLocation "831,332" ;
+	atxa-core:bpIndex "0" .
+
+_:node19o1i2p4jx46 atxa-core:bendpoint _:node19o1i2p4jx984 .
+
+_:node19o1i2p4jx984 atxa-core:bpLocation "78,332" ;
+	atxa-core:bpIndex "1" .
+
+_:node19o1i2p4jx979 atxa-core:contains _:node19o1i2p4jx985 .
+
+_:node19o1i2p4jx985 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue.mmapped$MappedBufferQueue> ;
+	atxa-core:posX "701" ;
+	atxa-core:posY "73" .
+
+_:node19o1i2p4jx89 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node19o1i2p4jx985 ;
+	rdf:object _:node19o1i2p4jx967 ;
+	atxa-core:bendpoint _:node19o1i2p4jx986 .
+
+_:node19o1i2p4jx986 atxa-core:bpLocation "794,286" ;
+	atxa-core:bpIndex "0" .
+
+_:node19o1i2p4jx89 atxa-core:bendpoint _:node19o1i2p4jx987 .
+
+_:node19o1i2p4jx987 atxa-core:bpLocation "485,286" ;
+	atxa-core:bpIndex "1" .
+
+_:node19o1i2p4jx90 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node19o1i2p4jx985 ;
+	rdf:object _:node19o1i2p4jx977 ;
+	atxa-core:bendpoint _:node19o1i2p4jx988 .
+
+_:node19o1i2p4jx988 atxa-core:bpLocation "794,332" ;
+	atxa-core:bpIndex "0" .
+
+_:node19o1i2p4jx90 atxa-core:bendpoint _:node19o1i2p4jx989 .
+
+_:node19o1i2p4jx989 atxa-core:bpLocation "78,332" ;
+	atxa-core:bpIndex "1" .
+
+_:node19o1i2p4jx979 atxa-core:contains _:node19o1i2p4jx990 .
+
+_:node19o1i2p4jx990 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#com.flipkart.iris.bufferqueue.mmapped$MappedBufferQueueFactory> ;
+	atxa-core:posX "845" ;
+	atxa-core:posY "173" .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+_:node19o1l4uotx54 a atxa-core:reloFile ;
+	atxa-core:contains _:node19o1i2p4jx968 , _:node19o1i2p4jx969 , _:node19o1i2p4jx970 , _:node19o1i2p4jx971 , _:node19o1i2p4jx972 , _:node19o1i2p4jx973 , _:node19o1i2p4jx974 , _:node19o1i2p4jx975 , _:node19o1i2p4jx976 , _:node19o1i2p4jx967 , _:node19o1i2p4jx977 , _:node19o1i2p4jx978 , _:node19o1i2p4jx966 , _:node19o1i2p4jx980 , _:node19o1i2p4jx985 , _:node19o1i2p4jx990 , _:node19o1i2p4jx979 , atxa-core:docRoot , _:node19o1i2p4jx968 , _:node19o1i2p4jx969 , _:node19o1i2p4jx970 , _:node19o1i2p4jx971 , _:node19o1i2p4jx972 , _:node19o1i2p4jx973 , _:node19o1i2p4jx974 , _:node19o1i2p4jx975 , _:node19o1i2p4jx976 , _:node19o1i2p4jx967 , _:node19o1i2p4jx977 , _:node19o1i2p4jx978 , _:node19o1i2p4jx966 , _:node19o1i2p4jx980 , _:node19o1i2p4jx985 , _:node19o1i2p4jx990 , _:node19o1i2p4jx979 , atxa-core:docRoot , _:node19o1i2p4jx8 , _:node19o1i2p4jx46 , _:node19o1i2p4jx89 , _:node19o1i2p4jx90 , _:node19o1i2p4jx8 , _:node19o1i2p4jx46 , _:node19o1i2p4jx89 , _:node19o1i2p4jx90 .
+

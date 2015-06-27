@@ -1,0 +1,133 @@
+
+
+
+IPPD(1)                   User Commands                   IPPD(1)
+
+
+
+NAME
+     ippd - Internet Poker Protocol server
+
+SYNOPSIS
+     ippd [-port PORT] [-nodisplay] [-size large|small]
+	  [-cardsspeak] [GAME [PARMS]]
+
+DESCRIPTION
+     This program launches  the  Internet  Poker  Protocol  (IPP)
+     server. See the HTML documentation for details of the proto-
+     col. All message traffic is logged to standard output.
+
+     The GAME parameter specifies what game  to  play.  The  only
+     currently supported GAME specification is:
+
+                      HOLDEM low high maxraises
+
+     where low and high are the low and high limits for the game,
+     respectively,  and maxraises is the number of raises allowed
+     per betting round. By default, the server will play  a  game
+     of  10/20  Texas Hold 'Em with a maximum of three raises per
+     betting round.
+
+     The server waits for players to connect before the  starting
+     the  game.   If running with a display, the ``Start'' button
+     will start the game.  If  running  without  a  display,  the
+     server waits to read a Return from its standard input before
+     starting.
+
+OPTIONS
+     -port PORT
+          Specifies an alternate TCP port on which to accept con-
+          nections. The default is port 9898.
+
+     -nodisplay
+          Specifies that the server should run  ``faceless.''  In
+          this  case, the game must be started by typing a Return
+          on the server's standard input. The default is to use a
+          graphical display.
+
+     -size large|small
+          Specifies the size of the graphical display, if one  is
+          enabled.  The  large  display  is  more  readable,  but
+          several small displays will fit on a single workstation
+          screen.
+
+     -cardsspeak
+          If given, specifies that the server should simply  com-
+          pute  the winner of each hand rather than doing a show-
+          down using IPP messages. The default  is  to  have  the
+          showdown.
+
+
+
+
+U of Rochester      Last change: 13 Oct 1998                    1
+
+
+
+
+
+
+IPPD(1)                   User Commands                   IPPD(1)
+
+
+
+SEE ALSO
+     ipphuman(1), ippplayer(1).
+
+BUGS
+     The determination of how much a player who has tapped out is
+     ``in  for''  is  not exactly as described in the rules. How-
+     ever, it's not too bad, and the rest of  the  algorithm  for
+     resolving ties is implemented.
+
+     Timing out clients  who don't respond is not yet implemented.
+     Clients who  send too many  consecutive unacceptable messages
+     are disconnected from the game.
+
+AUTHOR
+     George Ferguson (ferguson@cs.rochester.edu).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+U of Rochester      Last change: 13 Oct 1998                    2
+
+
+

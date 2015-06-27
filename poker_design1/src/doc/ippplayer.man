@@ -1,0 +1,48 @@
+.\" Time-stamp: <Tue Oct 13 10:25:46 EDT 1998 ferguson>
+.TH IPPPLAYER 1 "9 Oct 1998" "U of Rochester"
+.SH NAME
+ippplayer \- Internet Poker Protocol player client
+.SH SYNOPSIS
+ippplayer
+[\-server\ HOST:PORT]
+[\-size\ large|small]
+[\-mode\ default|random|agressive|smart]
+NAME\ [BUYIN]
+.SH DESCRIPTION
+.PP
+This program launches an automated Internet Poker Protocol (IPP)
+player. The player connects to the IPP server, identifies itself as
+.BR NAME ,
+and then plays in the game. Various modes (styles) of play can be
+selected using the
+.B -mode
+option.
+.SH OPTIONS
+.PP
+.IP "\fB-server\fP HOST:PORT"
+Specifies the TCP port on which to contact the server. The default is
+localhost:9898.
+.IP "\fB-size\fP large|small"
+Specifies the size of the graphical display, if one is enabled. The
+large display is more readable, but several small displays will fit on
+a single workstation screen.
+.IP "\fB-mode\fP MODE"
+Specifies the style of play for the player. The
+.B default
+mode will stay in the game, the
+.B random
+mode will select uniformly from legal options each time it needs to
+play, the
+.B aggresive
+mode will open or raise whenever possible. The
+.B smart
+option is not yet implemented.
+.SH SEE ALSO
+.PP
+ippd(1),
+ipphuman(1).
+.SH AUTHOR
+.PP
+George Ferguson (ferguson@cs.rochester.edu).
+
+

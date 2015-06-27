@@ -1,0 +1,66 @@
+
+
+
+IPPPLAYER(1)              User Commands              IPPPLAYER(1)
+
+
+
+NAME
+     ippplayer - Internet Poker Protocol player client
+
+SYNOPSIS
+     ippplayer  [-server HOST:PORT]  [-size large|small]
+		[-mode default|random|agressive|smart] NAME [BUYIN]
+
+DESCRIPTION
+     This program launches an automated Internet  Poker  Protocol
+     (IPP) player. The player connects to the IPP server, identi-
+     fies itself as NAME, and then plays  in  the  game.  Various
+     modes  (styles)  of  play  can  be  selected using the -mode
+     option.
+
+OPTIONS
+     -server HOST:PORT
+          Specifies the TCP port on which to contact the  server.
+          The default is localhost:9898.
+
+     -size large|small
+          Specifies the size of the graphical display, if one  is
+          enabled.  The  large  display  is  more  readable,  but
+          several small displays will fit on a single workstation
+          screen.
+
+     -mode MODE
+          Specifies the style of play for the player. The default
+          mode will stay in the game, the random mode will select
+          uniformly from legal options  each  time  it  needs  to
+          play,  the  aggresive  mode will open or raise whenever
+          possible. The smart option is not yet implemented.
+
+SEE ALSO
+     ippd(1), ipphuman(1).
+
+AUTHOR
+     George Ferguson (ferguson@cs.rochester.edu).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+U of Rochester       Last change: 9 Oct 1998                    1
+
+
+

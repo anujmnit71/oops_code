@@ -1,0 +1,65 @@
+
+
+
+IPPHUMAN(1)               User Commands               IPPHUMAN(1)
+
+
+
+NAME
+     ipphuman - Internet Poker Protocol human client
+
+SYNOPSIS
+     ipphuman [-server HOST:PORT] [-size large|small] NAME [BUYIN]
+
+DESCRIPTION
+     This program launches an automated Internet  Poker  Protocol
+     (IPP)  client for use by a human player. The client connects
+     to the IPP server, identifies itself as NAME, and then plays
+     in the game. When action is needed, the human player can use
+     graphical buttons and dialog boxes to indicate  his  or  her
+     play.
+
+OPTIONS
+     -server HOST:PORT
+          Specifies the TCP port on which to contact the  server.
+          The default is localhost:9898.
+
+     -size large|small
+          Specifies the size of the graphical display, if one  is
+          enabled.  The  large  display  is  more  readable,  but
+          several small displays will fit on a single workstation
+          screen.
+
+SEE ALSO
+     ippd(1), ippplayer(1).
+
+AUTHOR
+     George Ferguson (ferguson@cs.rochester.edu).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+U of Rochester       Last change: 9 Oct 1998                    1
+
+
+

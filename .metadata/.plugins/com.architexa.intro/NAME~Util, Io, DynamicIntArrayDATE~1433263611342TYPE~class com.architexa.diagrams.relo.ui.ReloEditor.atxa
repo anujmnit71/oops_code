@@ -1,0 +1,87 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+_:node19mqchf2ox14 a atxa-core:reloFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node19mqchckpx2617 .
+
+_:node19mqchckpx2617 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.fife.util> ;
+	atxa-core:posX "170" ;
+	atxa-core:posY "128" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.fife.util> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.fife.util$DynamicIntArray> .
+
+_:node19mqchckpx2617 atxa-core:contains _:node19mqchckpx2618 .
+
+_:node19mqchckpx2618 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.fife.util$DynamicIntArray> ;
+	atxa-core:posX "176" ;
+	atxa-core:posY "157" .
+
+_:node19mqchckpx663 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node19mqchckpx2618 ;
+	rdf:object _:node19mqchckpx2619 ;
+	atxa-core:bendpoint _:node19mqchckpx2620 .
+
+_:node19mqchckpx2620 atxa-core:bpLocation "256,108" ;
+	atxa-core:bpIndex "0" .
+
+_:node19mqchckpx663 atxa-core:bendpoint _:node19mqchckpx2621 .
+
+_:node19mqchckpx2621 atxa-core:bpLocation "119,108" ;
+	atxa-core:bpIndex "1" .
+
+atxa-core:docRoot atxa-core:contains _:node19mqchckpx2622 .
+
+_:node19mqchckpx2622 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.io> ;
+	atxa-core:posX "54" ;
+	atxa-core:posY "-101" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.io> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#java.io$Reader> , <http://www.architexa.com/rdf/jdt-wkspc#java.io$Writer> , <http://www.architexa.com/rdf/jdt-wkspc#java.io$Serializable> , <http://www.architexa.com/rdf/jdt-wkspc#java.io$FileFilter> .
+
+_:node19mqchckpx2622 atxa-core:contains _:node19mqchckpx2623 .
+
+_:node19mqchckpx2623 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.io$Reader> ;
+	atxa-core:posX "75" ;
+	atxa-core:posY "-72" .
+
+_:node19mqchckpx2622 atxa-core:contains _:node19mqchckpx2624 .
+
+_:node19mqchckpx2624 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.io$Writer> ;
+	atxa-core:posX "77" ;
+	atxa-core:posY "-72" .
+
+_:node19mqchckpx2622 atxa-core:contains _:node19mqchckpx2619 .
+
+_:node19mqchckpx2619 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.io$Serializable> ;
+	atxa-core:posX "60" ;
+	atxa-core:posY "45" .
+
+_:node19mqchckpx2622 atxa-core:contains _:node19mqchckpx2625 .
+
+_:node19mqchckpx2625 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.io$FileFilter> ;
+	atxa-core:posX "69" ;
+	atxa-core:posY "-19" .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+_:node19mqchf2ox14 a atxa-core:reloFile ;
+	atxa-core:contains _:node19mqchckpx2618 , _:node19mqchckpx2617 , _:node19mqchckpx2623 , _:node19mqchckpx2624 , _:node19mqchckpx2619 , _:node19mqchckpx2625 , _:node19mqchckpx2622 , atxa-core:docRoot , _:node19mqchckpx2618 , _:node19mqchckpx2617 , _:node19mqchckpx2623 , _:node19mqchckpx2624 , _:node19mqchckpx2619 , _:node19mqchckpx2625 , _:node19mqchckpx2622 , atxa-core:docRoot , _:node19mqchckpx663 , _:node19mqchckpx663 .
+

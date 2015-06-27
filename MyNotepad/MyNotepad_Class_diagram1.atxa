@@ -1,0 +1,126 @@
+@prefix atxa-rse-eclipse: <http://www.architexa.com/rdf/rse-eclipse#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+<http://www.architexa.com/rdf/rse-eclipse#Class_undiagram1.atxa> a atxa-core:reloFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node19mqchckpx4951 .
+
+_:node19mqchckpx4951 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#(default)> ;
+	atxa-core:posX "505" ;
+	atxa-core:posY "233" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#(default)> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS> .
+
+_:node19mqchckpx4951 atxa-core:contains _:node19mqchckpx4952 .
+
+_:node19mqchckpx4952 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS> ;
+	atxa-core:posX "511" ;
+	atxa-core:posY "262" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS.actionPerformed(ActionEvent,)> , <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS.MyNotepadS()> , <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS.main(String[],)> .
+
+_:node19mqchckpx4787 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node19mqchckpx4952 ;
+	rdf:object _:node19mqchckpx4953 ;
+	atxa-core:bendpoint _:node19mqchckpx4954 .
+
+_:node19mqchckpx4954 atxa-core:bpLocation "653,159" ;
+	atxa-core:bpIndex "0" .
+
+_:node19mqchckpx4787 atxa-core:bendpoint _:node19mqchckpx4955 .
+
+_:node19mqchckpx4955 atxa-core:bpLocation "360,159" ;
+	atxa-core:bpIndex "1" .
+
+_:node19mqchckpx4791 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node19mqchckpx4952 ;
+	rdf:object _:node19mqchckpx4956 ;
+	atxa-core:bendpoint _:node19mqchckpx4957 .
+
+_:node19mqchckpx4957 atxa-core:bpLocation "653,159" ;
+	atxa-core:bpIndex "0" .
+
+_:node19mqchckpx4791 atxa-core:bendpoint _:node19mqchckpx4958 .
+
+_:node19mqchckpx4958 atxa-core:bpLocation "727,159" ;
+	atxa-core:bpIndex "1" .
+
+_:node19mqchckpx4952 atxa-core:contains _:node19mqchckpx4959 .
+
+_:node19mqchckpx4959 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS.actionPerformed(ActionEvent,)> ;
+	atxa-core:posX "512" ;
+	atxa-core:posY "284" .
+
+_:node19mqchckpx4952 atxa-core:contains _:node19mqchckpx4960 .
+
+_:node19mqchckpx4960 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS.MyNotepadS()> ;
+	atxa-core:posX "512" ;
+	atxa-core:posY "304" .
+
+_:node19mqchckpx4952 atxa-core:contains _:node19mqchckpx4961 .
+
+_:node19mqchckpx4961 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS.main(String[],)> ;
+	atxa-core:posX "512" ;
+	atxa-core:posY "324" .
+
+_:node19mqchckpx4824 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node19mqchckpx4961 ;
+	rdf:object _:node19mqchckpx4960 .
+
+atxa-core:docRoot atxa-core:contains _:node19mqchckpx4962 .
+
+_:node19mqchckpx4962 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event> ;
+	atxa-core:posX "283" ;
+	atxa-core:posY "67" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.awt.event> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event$ActionListener> .
+
+_:node19mqchckpx4962 atxa-core:contains _:node19mqchckpx4953 .
+
+_:node19mqchckpx4953 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event$ActionListener> ;
+	atxa-core:posX "289" ;
+	atxa-core:posY "96" .
+
+atxa-core:docRoot atxa-core:contains _:node19mqchckpx4963 .
+
+_:node19mqchckpx4963 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing> ;
+	atxa-core:posX "676" ;
+	atxa-core:posY "67" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#javax.swing> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JFrame> .
+
+_:node19mqchckpx4963 atxa-core:contains _:node19mqchckpx4956 .
+
+_:node19mqchckpx4956 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JFrame> ;
+	atxa-core:posX "682" ;
+	atxa-core:posY "96" .
+
+@prefix atxa-rse-eclipse: <http://www.architexa.com/rdf/rse-eclipse#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+<http://www.architexa.com/rdf/rse-eclipse#Class_undiagram1.atxa> a atxa-core:reloFile ;
+	atxa-core:contains _:node19mqchckpx4959 , _:node19mqchckpx4960 , _:node19mqchckpx4961 , _:node19mqchckpx4952 , _:node19mqchckpx4951 , _:node19mqchckpx4953 , _:node19mqchckpx4962 , _:node19mqchckpx4956 , _:node19mqchckpx4963 , atxa-core:docRoot , _:node19mqchckpx4959 , _:node19mqchckpx4960 , _:node19mqchckpx4961 , _:node19mqchckpx4952 , _:node19mqchckpx4951 , _:node19mqchckpx4953 , _:node19mqchckpx4962 , _:node19mqchckpx4956 , _:node19mqchckpx4963 , atxa-core:docRoot , _:node19mqchckpx4787 , _:node19mqchckpx4791 , _:node19mqchckpx4824 , _:node19mqchckpx4787 , _:node19mqchckpx4791 , _:node19mqchckpx4824 .
+

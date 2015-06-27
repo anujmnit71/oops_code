@@ -1,0 +1,607 @@
+<HTML>
+<HEAD>
+<TITLE>Internet Poker Protocol (IPP)</TITLE>
+</HEAD>
+<BODY>
+<CENTER>
+<H1>Internet Poker Protocol (IPP)<BR>
+Version 2.0<BR>
+29 Oct 1999</H1>
+<H2>George Ferguson<BR>
+ferguson@cs.rochester.edu</H2>
+</CENTER>
+<P>
+This is a living document. A <A HREF="#sample">sample session</A> and
+<A HREF="#revisions">revision history</A> follow the definitions.
+<P>
+<H2>Definitions</H2>
+IPP messages are sequences of ASCII characters terminated by a newline.
+<P>
+Elements of messages can be separated by spaces or tabs unless noted
+below.
+<P>
+Messages are interpreted <B>without</B> respect for case unless noted below.
+<P>
+The following definitions are used in the descriptions that follow.
+<UL>
+<LI><I>rank</I>: One of <TT>A</TT>, <TT>2</TT>, <TT>3</TT>,
+<TT>4</TT>, <TT>5</TT>, <TT>6</TT>,<TT>7</TT>, <TT>8</TT>, <TT>9</TT>,
+<TT>T</TT>, <TT>J</TT>, <TT>Q</TT>, or <TT>K</TT>. Note that the rank
+of ``ten'' is denoted by <TT>T</TT>.
+<P>
+<LI><I>suit</I>: One of <TT>S</TT>, <TT>H</TT>, <TT>D</TT>, or
+<TT>C</TT>.
+<P>
+<LI><I>card</I>: A <I>rank</I> and <I>suit</I> with no intervening
+whitespace, for example <TT>7H</TT> for the seven of hearts or
+<TT>TC</TT> for the ten of clubs.
+<P>
+<LI><I>name</I>: Sequence of non-<I>space</I> characters, for example
+``Fred'' or ``Mr_Smith''.
+<P>
+<LI><I>amt</I>: A number (sequence of digits) representing an amount
+of money.
+</UL>
+
+<H2>Handshaking Messages</H2>
+The following messages are exchanged with the server to establish
+communication.
+<UL>
+<LI><TT>IPP</TT> <I>version</I> <I>info</I><BR>
+The server will send this message after accepting a new connection
+(<I>version</I> is the protocol version, <I>info</I> is simply an
+informational string).
+<P>
+<LI><TT>BUYIN</TT> <I>name</I> <I>amt</I><BR>
+This should be the first message sent by a player to the server upon
+connection to add themselves to the game with an initial stake of
+<I>amt</I>.
+<P>
+<LI><TT>WELCOME</TT> <I>name</I><BR>
+The server will respond with this when the player has been added to
+the game.
+</UL>
+Additions to this part of the protocol may be needed (for example, to
+indicate that the server has acknowledged the player but cannot add
+them to the game yet).
+
+<H2>Information Messages</H2>
+The following messages are sent by the server. No response is
+expected, required, or permitted.
+<UL>
+<LI><TT>NEWGAME</TT> <I>type</I> ...<BR>
+Sent by the server to start a new game. The <I>type</I> and parameters
+identifies the game being played:
+<UL>
+<LI>For Texas Holdem, the <I>type</I> will be <TT>HOLDEM</TT>,
+followed by three numeric parameters indicating the low and high
+limits, respectively, and the maximum number of raises per round.
+<BR>Example: <TT>NEWGAME HOLDEM 10 20 3</TT>.
+<LI>For Five-Card Draw, the <I>type</I> will be <TT>DRAW</TT>,
+followed by the same three parameters.
+<BR>Example: <TT>NEWGAME DRAW 10 20 3</TT>.
+<LI>For Five- or Seven-Card Stud, the <I>type</I> will be <TT>STUD</TT>,
+followed by four numeric parameters. The first parameter will be the
+number of cards (5 or 7). The other three parameters are as above.
+<BR>Example: <TT>NEWGAME STUD 7 10 20 3</TT>.
+</UL>
+<P>
+<LI><TT>PLAYER</TT> <I>name</I> <I>amt</I><BR>
+Sent by the server before play starts to identify a player and their
+starting stake. Players are announced in seated order clockwise from
+the dealer. <BR>Example: <TT>PLAYER Fred 1000</TT>.
+<P>
+<LI><TT>BUTTON</TT> <I>name</I><BR>
+Sent by the server at the start of each hand in a game to identify the
+player on the button (first to bet). The button rotates clockwise from
+the first seated player. <BR>Example: <TT>BUTTON Fred</TT>.
+<P>
+<LI><TT>ANTE</TT> <I>amt</I><BR>
+Sent by the server to remind a player that they have anted the
+indicated <I>amt</I>. <BR>Example: <TT>ANTE 5</TT>.
+<P>
+<LI><TT>DEAL</TT> <I>card</I> <I>card</I><BR>
+Sent by the server to tell a player their hole cards. In Texas Holdem
+there are two hole cards, in Draw Poker there are five, in Five-Card
+Stud there is one, and in Seven-Card Stud there are two (initially).
+<BR>Example: <TT>DEAL AS 7H</TT>.
+</UL>
+
+An important informational message sent by the server is the
+following:
+<UL>
+<LI><TT>FROM</TT> <I>name</I> <I>msg</I><BR>
+Sent by the server to tell other players that the player named
+<I>name</I> has sent the given <I>msg</I>. Not all messages are
+copied, but any message that may be useful in tracking the state of
+the game will be copied to all other players. This includes in
+particular the responses to the <TT>ACTION?</TT>, <TT>SHOW?</TT>, and
+<TT>BEAT?</TT> messages described in the next sections.
+</UL>
+
+<P>
+<H2>Texas Holdem Messages</H2>
+The following messages are specific to Texas Holdem games:
+<UL>
+<LI><TT>FLOP</TT> <I>card</I> <I>card</I> <I>card</I><BR>
+Sent by the server in Texas Holdem to announce the first three common
+cards. <BR>Example: <TT>FLOP 8C TS QS</TT>.
+<P>
+<LI><TT>TURN</TT> <I>card</I><BR>
+Sent by the server in Texas Holdem to announce the fourth common
+card. <BR>Example: <TT>TURN 2D</TT>.
+<P>
+<LI><TT>RIVER</TT> <I>card</I><BR>
+Sent by the server in Texas Holdem to announce the fifth and last
+common card. <BR>Example: <TT>RIVER KD</TT>.
+</UL>
+See the <A HREF="#examples">examples</A> for an illustration of these
+messages.
+
+<P>
+<H2>Draw Poker Messages</H2>
+The following messages are specific draw poker games:
+<UL>
+<LI><TT>DRAW?</TT><BR>
+Sent by the server to ask a player how many cards they wish to draw.
+Valid responses are:
+<UL>
+<LI><TT>FOLD</TT>: Folds the player for this hand.
+<LI><TT>DRAW</TT> <I>num</I> <I>card</I> <I>card</I> ...: Asks to draw
+<I>num</I> cards, and lists the <I>card</I>s being traded in. Note
+that this message is copied to other players in a <TT>FROM</TT>
+message with only the <I>num</I> indicated.
+</UL>
+<P>
+<LI><TT>DRAWN</TT> <I>num</I> <I>card</I> <I>card</I>...: Sent by the
+server to indicate the new cards drawn by the player.
+</UL>
+See the <A HREF="#examples">examples</A> for an illustration of these
+messages.
+
+<P>
+<H2>Stud Poker Messages</H2>
+The following messages are specific to stud poker games:
+<UL>
+<LI><TT>UP</TT> <I>card</I><BR>
+Sent by the server to inform a player of a new up (public) card. Note
+that this message is copied to other players as a <TT>FROM</TT>
+message so that they can know what the public cards are (this is a
+minor overloading of the ``<TT>FROM</TT>'' notation).
+<P>
+<LI><TT>DOWN</TT> <I>card</I><BR>
+Sent by the server to inform a player of a new down (private) card.
+</UL>
+See the <A HREF="#examples">examples</A> for an illustration of these
+messages.
+
+<P>
+<H2>Betting Messages</H2>
+The following messages are sent during betting. The possible responses
+are listed below.
+
+<UL>
+<LI><TT>ACTION? BLIND</TT> <I>amt</I><BR>
+Sent by the server to the player who is required to make the blind bet
+(if required). In Texas Holdem, the player on the button (or next
+remaining player) must bet blind in the first two rounds. The
+acceptable responses are:
+<UL>
+<LI><TT>BLIND</TT> <I>amt</I>: Makes the blind bet.
+<LI><TT>TAPOUT</TT> <I>amt'</I>: Taps out for the blind bet (see the
+description of <TT>ACTION?</TT>, below).
+</UL>
+<P>
+<LI><TT>ACTION? STRADDLE</TT> <I>amt</I><BR>
+Sent by the server to the player who is required to make the straddle bet
+(if required). In Texas Holdem, the player following the blind bettor
+must straddle in the first two rounds. The acceptable responses are:
+<UL>
+<LI><TT>STRADDLE</TT> <I>amt</I>: Makes the straddle bet.
+<LI><TT>FOLD</TT>: Folds the player for this hand. The next player
+will then be required to make the straddle bet.
+<LI><TT>TAPOUT</TT> <I>amt'</I>: Taps out for the straddle bet (see the
+description of <TT>ACTION?</TT>, below).
+</UL>
+<P>
+<LI><TT>ACTION? OWING</TT> <I>amt</I><BR>
+Sent by the server when it is a player's turn to bet other than the
+blind or the straddle. There are several possible responses:
+<UL>
+<LI><TT>CALL</TT> <I>amt</I>: Calls the current bet (ie., puts <I>amt</I> into
+the pot).
+<LI><TT>RAISE</TT> <I>amt'</I>: Raises the current bet (ie., puts <I>amt'</I>
+== <I>amt</I> + limit into the pot).
+<LI><TT>FOLD</TT>: Folds the player for this hand.
+<LI><TT>OPEN</TT> <I>amt</I>: Opens the betting by betting <I>amt</I>,
+which must be the current limit.
+This response can only be sent if the betting has not yet been opened
+(either by a <TT>BLIND</TT> or an <TT>OPEN</TT>).
+<LI><TT>CHECK</TT>: Checks the bet (passes without betting).
+This response can only be sent if the betting has not yet been opened
+(either by a <TT>BLIND</TT> or an <TT>OPEN</TT>).
+<LI><TT>TAPOUT</TT> <I>amt'</I>: Can only be sent if a player has less than
+<I>amt</I> cash left. This <I>amt'</I> is added to the pot and the player
+is tapped-out for the rest of the hand.
+</UL>
+</UL>
+If the response to an <TT>ACTION?</TT> message is acceptable, the
+server will respond with a message starting with <TT>OK</TT>.
+Otherwise it will send a message starting with <TT>ERROR</TT> followed
+by some indication of the error. Reasons for errors include trying to
+perform an action that is not permitted at this time (e.g., checking
+after betting has been opened) or trying to bet more money than a
+player has left.
+
+<P>
+<H2>Showdown Messages</H2>
+The term <I>handtype</I> in the following refers to a declaration of a
+hand that can be made from a player's cards, such as ``pair of aces''
+or ``straight flush 7 high.'' The following syntax is used for these.
+Note that only the information needed in comparing hands is included.
+<UL>
+<LI><TT>STRAIGHTFLUSH</TT> <I>rank</I><BR>
+A straight flush whose highest card is the given <I>rank</I>.
+<BR>
+Example: ``Straight flush, jack high'' = <TT>STRAIGHTFLUSH J</TT>
+<LI><TT>FOUROFAKIND</TT> <I>rank</I> <I>rank</I><BR> A four-of-a-kind
+of the first given <I>rank</I>, with a ``kicker'' card of the second
+given <I>rank</I> (both ranks are needed to handle ties in games with
+common cards).
+<BR>
+Example: ``Four sevens with ace kicker'' = <TT>FOUROFAKIND 7 A</TT>
+<LI><TT>FULLHOUSE</TT> <I>rank</I> <I>rank</I><BR>
+A full house whose three-of-a-kind is of the first given <I>rank</I>
+and whose pair is of the second given <I>rank</I> (both ranks are
+needed to handle ties in games with common cards).
+<BR>
+Example: ``Full house, queens and threes'' = <TT>FULLHOUSE Q 3</TT>
+<LI><TT>FLUSH</TT> <I>rank</I> <I>rank</I> <I>rank</I> <I>rank</I>
+<I>rank</I><BR>
+A flush whose five cards are of the given <I>rank</I>s, listed from
+highest to lowest.
+<BR>
+Example: ``Ten-high flush (ten, nine, eight, six, two of hearts)'' =
+<TT>FLUSH T 9 8 6 2</TT>
+<LI><TT>STRAIGHT</TT> <I>rank</I><BR>
+A straight whose highest card is the given <I>rank</I>.
+<BR>
+Example: ``King-high straight'' = <TT>STRAIGHT K</TT>
+<LI><TT>THREEOFAKIND</TT> <I>rank</I> <I>rank</I> <I>rank</I><BR> A
+three-of-a-kind of the first given <I>rank</I>, with ``kicker'' cards
+of the other two <I>rank</I>'s, highest card first. (both ranks are
+needed to handle ties in games with common cards).
+<BR>
+Example: ``Three twos, queen, seven'' = <TT>THREEOFAKIND 2 Q 7</TT>
+<LI><TT>TWOPAIR</TT> <I>rank</I> <I>rank</I> <I>rank</I><BR>
+Two pairs of the given <I>rank</I>s listed from highest to lowest, and
+a fifth card of the third <I>rank</I>.
+<BR>
+Example: ``Two pair, jacks and eights, ace kicker'' = <TT>TWOPAIR J 8 A</TT>
+<LI><TT>ONEPAIR</TT> <I>rank</I> <I>rank</I> <I>rank</I> <I>rank</I><BR>
+One pair of the given <I>rank</I>, and third, fourth, and fifth cards
+of the remaining ranks, listed from highest to lowest.
+<BR>
+Example: ``Pair of tens, ace, five, three'' = <TT>ONEPAIR T A 5 3</TT>
+<LI><TT>HIGHCARD</TT> <I>rank</I> <I>rank</I> <I>rank</I> <I>rank</I>
+<I>rank</I><BR>
+A hand without even a pair whose five cards are of the given
+<I>rank</I>s, listed from highest to lowest.
+<BR>
+Example: ``Queen-high (QS TD 8C 7C 2D)'' = <TT>HIGHCARD Q T 8 7 2</TT>
+</UL>
+<P>
+The following messages are sent during a showdown when not playing
+``cards speak.'' Possible responses are described below.
+
+<UL>
+<LI><TT>SHOW?</TT><BR>
+Sent by the server to the player being called to show their hand. The
+only acceptable response is:
+<UL>
+<LI><TT>SHOW</TT> <I>handtype</I>
+</UL>
+<P>
+<LI><TT>SHOW</TT> <I>player</I> <I>card</I> <I>card</I> ...<BR>
+Sent by the server to all players after a player has announced a hand,
+to tell the other players what that player's hole cards are. What
+hand the player announced will arrive in the form of a <TT>FROM</TT>
+message of type <TT>SHOW</TT>. No response is expected or permitted.
+<P>
+<LI><TT>BEAT?</TT> <I>handtype</I><BR>
+Sent by the server to remaining players to ask if they can beat the
+given <I>handtype</I>. The two possible responses are:
+<UL>
+<LI><TT>NO</TT><BR>
+Indicates that the player cannot beat the announced hand and must fold.
+<LI><TT>YES</TT> <I>handtype</I><BR>
+Indicates that the player can beat the announced hand and announces
+the better hand.
+</UL>
+</UL>
+
+As for <TT>ACTION?</TT> messages, the server will respond with either
+<TT>OK</TT> or an <TT>ERROR</TT> message. Note that announcing a
+<I>handtype</I> not supported by a player's cards is considered an
+<TT>ERROR</TT>.
+
+<P>
+<H2>End-of-hand Messages</H2>
+The following messages are sent by the server at the end of each hand.
+No response is expected, required, or permitted.
+
+<UL>
+<LI><TT>WINNER</TT> <I>name</I> <I>amt</I> <I>handtype</I><BR>
+Sent by the server to indicate the winner of the hand, the amount
+they won, and the winning handtype. Note that in the case of ties or
+tap-outs, several <TT>WINNER</TT> messages may be sent by the server.
+<P>
+<LI><TT>BUSTED</TT> <I>name</I><BR>
+Sent by the server to indicate a player without enough money left
+to stay in the game. These players can continue to receive messages
+but will no longer be involved in the play. That is, they will never
+be dealt cards nor be asked to bet or participate in a showdown.
+<P>
+<LI><TT>GAMEOVER</TT> <I>name</I> <I>amt</I><BR>
+Sent by the server to indicate the final winner of the game. Also
+indicates the end of the game.
+</UL>
+<P>
+<H2>Miscellaneous Messages</H2>
+The following messages may also be sent by the server.
+
+<UL>
+<LI><TT>QUIT</TT> <I>name</I><BR>
+Indicates that a player has unexpectedly quit the game. This should be
+treated like <TT>BUSTED</TT>, except that it can occur anytime if the player
+drops the connection to the server or is otherwise uncooperative.
+</UL>
+
+<P>
+<HR>
+<H2><A NAME="examples">Illustrative Examples</A></H2>
+<P>
+In Texas Holdem, the flow of the game is as follows (from the
+perspective of one player):
+<UL>
+<LI><TT>DEAL</TT> <I>card</I>
+<LI>Betting round (low limit)
+<LI><TT>FLOP</TT> <I>card</I> <I>card</I> <I>card</I>
+<LI>Betting round (low limit)
+<LI><TT>TURN</TT> <I>card</I>
+<LI>Betting round (high limit)
+<LI><TT>RIVER</TT> <I>card</I>
+<LI>Betting round (high limit)
+<LI>Showdown
+</UL>
+<P>
+In Draw poker, the flow of the game is as follows:
+<UL>
+<LI><TT>DEAL</TT> <I>card</I> <I>card</I> <I>card</I> <I>card</I> <I>card</I>
+<LI>Betting round (low limit)
+<LI><TT>DRAW?</TT>
+<LI><TT>DRAW</TT> <I>num</I> <I>card</I> <I>card</I>...
+<LI><TT>DRAWN</TT> <I>num</I> <I>card</I> <I>card</I>...
+<LI>Betting round (high limit)
+<LI>Showdown
+</UL>
+<P>
+In 5-Card Stud, the flow of the game is as follows:
+<UL>
+<LI><TT>DEAL</TT> <I>card</I>
+<LI><TT>UP</TT> <I>card</I>
+<LI>Betting round (low limit)
+<LI><TT>UP</TT> <I>card</I>
+<LI>Betting round (low limit)
+<LI><TT>UP</TT> <I>card</I>
+<LI>Betting round (high limit)
+<LI><TT>UP</TT> <I>card</I>
+<LI>Betting round (high limit)
+<LI>Showdown
+</UL>
+In 7-Card Stud, the flow of the game is as follows:
+<UL>
+<LI><TT>DEAL</TT> <I>card</I> <I>card</I>
+<LI><TT>UP</TT> <I>card</I>
+<LI>Betting round (low limit)
+<LI><TT>UP</TT> <I>card</I>
+<LI>Betting round (low limit)
+<LI><TT>UP</TT> <I>card</I>
+<LI>Betting round (high limit)
+<LI><TT>UP</TT> <I>card</I>
+<LI>Betting round (high limit)
+<LI><TT>DOWN</TT> <I>card</I>
+<LI>Betting round (high limit)
+<LI>Showdown
+</UL>
+
+<P>
+<HR>
+<H2><A NAME="sample">Sample Session</A></H2>
+<P>
+Assume that initially no players are connected, then three players
+(clients) named Alpha, Beta, and Gamma join.
+<P>
+<TABLE>
+<TR><TD COLSPAN=2><I>Connection established with Alpha</I></TD></TR>
+<TR><TD>From server to Alpha:</TD><TD><TT>IPP 1.0 ...</TT></TD></TR>
+<TR><TD>From Alpha to server:</TD><TD><TT>BUYIN Alpha 1000</TT></TD></TR>
+<TR><TD>From server to Alpha:</TD><TD><TT>WELCOME Alpha</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Connection established with Beta</I></TD><TD></TD></TR>
+<TR><TD>From server to Beta:</TD><TD><TT>IPP 1.0 ...</TT></TD></TR>
+<TR><TD>From Beta to server:</TD><TD><TT>BUYIN Beta 1000</TT></TD></TR>
+<TR><TD>From server to Beta:</TD><TD><TT>WELCOME Beta</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Connection established with Gamma</I></TD><TD></TD></TR>
+<TR><TD>From server to Gamma:</TD><TD><TT>IPP 1.0 ...</TT></TD></TR>
+<TR><TD>From Gamma to server:</TD><TD><TT>BUYIN Gamma 1000</TT></TD></TR>
+<TR><TD>From server to Gamma:</TD><TD><TT>WELCOME Gamma</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Game starts...</I></TD><TD></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>NEWGAME HOLDEM 10 20</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>NEWGAME HOLDEM 10 20</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>NEWGAME HOLDEM 10 20</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>PLAYER Alpha 1000</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>PLAYER Alpha 1000</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>PLAYER Alpha 1000</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>PLAYER Beta 1000</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>PLAYER Beta 1000</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>PLAYER Beta 1000</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>PLAYER Gamma 1000</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>PLAYER Gamma 1000</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>PLAYER Gamma 1000</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Hand starts...</I></TD><TD></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>BUTTON Alpha</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>BUTTON Alpha</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>BUTTON Alpha</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>ANTE 5</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>ANTE 5</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>ANTE 5</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>DEAL 5H TC</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>DEAL AD JD</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>DEAL 2C 8S</TT></TD></TR>
+<TR><TD COLSPAN=2><I>First betting round (limit 10)...</I></TD><TD></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>ACTION? BLIND 5</TT></TD></TR>
+<TR><TD>From Alpha to server</TD><TD><TT>BLIND 5</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>OK BLIND 5</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FROM Alpha BLIND 5</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Alpha BLIND 5</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>ACTION? STRADDLE 10</TT></TD></TR>
+<TR><TD>From Beta to server</TD><TD><TT>STRADDLE 10</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>OK STRADDLE 10</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Beta STRADDLE 10</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Beta STRADDLE 10</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>ACTION? OWING 10</TT></TD></TR>
+<TR><TD>From Gamma to server</TD><TD><TT>CALL 10</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>OK CALL 10</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Gamma CALL 10</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FROM Gamma CALL 10</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>ACTION? OWING 5</TT></TD></TR>
+<TR><TD>From Alpha to server</TD><TD><TT>CALL 5</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>OK CALL 5</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FROM Alpha CALL 5</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Alpha CALL 5</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Flop...</I></TD><TD></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FLOP 7S 2H QD</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FLOP 7S 2H QD</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FLOP 7S 2H QD</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Second betting round (limit 10)...</I></TD><TD></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>ACTION? BLIND 5</TT></TD></TR>
+<TR><TD>From Alpha to server</TD><TD><TT>BLIND 5</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>OK BLIND 5</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FROM Alpha BLIND 5</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Alpha BLIND 5</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>ACTION? STRADDLE 10</TT></TD></TR>
+<TR><TD>From Beta to server</TD><TD><TT>STRADDLE 10</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>OK STRADDLE 10</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Beta STRADDLE 10</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Beta STRADDLE 10</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>ACTION? OWING 10</TT></TD></TR>
+<TR><TD>From Gamma to server</TD><TD><TT>RAISE 20</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>OK RAISE 20</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Gamma RAISE 20</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FROM Gamma RAISE 20</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>ACTION? OWING 15</TT></TD></TR>
+<TR><TD>From Alpha to server</TD><TD><TT>FOLD</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>OK FOLD</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FROM Alpha FOLD</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Alpha FOLD</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>ACTION? OWING 10</TT></TD></TR>
+<TR><TD>From Beta to server</TD><TD><TT>CALL 10</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>OK CALL 10</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Beta CALL 10</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Beta CALL 10</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Turn...</I></TD><TD></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>TURN 4D</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>TURN 4D</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>TURN 4D</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Third betting round (no blind, limit 20, Alpha has folded)...</I></TD><TD></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>ACTION? OWING 0</TT></TD></TR>
+<TR><TD>From Beta to server</TD><TD><TT>OPEN 20</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>OK OPEN 20</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Beta OPEN 20</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Beta OPEN 20</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>ACTION? OWING 20</TT></TD></TR>
+<TR><TD>From Gamma to server</TD><TD><TT>CALL 20</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>OK CALL 20</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Gamma CALL 20</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FROM Gamma CALL 20</TT></TD></TR>
+<TR><TD COLSPAN=2><I>River...</I></TD><TD></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>RIVER TS</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>RIVER TS</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>RIVER TS</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Fourth betting round...</I></TD><TD></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>ACTION? OWING 0</TT></TD></TR>
+<TR><TD>From Beta to server</TD><TD><TT>CHECK</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>OK CHECK</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Beta CHECK</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Beta CHECK</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>ACTION? OWING 0</TT></TD></TR>
+<TR><TD>From Gamma to server</TD><TD><TT>OPEN 20</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>OK OPEN 20</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Gamma OPEN 20</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FROM Gamma OPEN 20</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>ACTION? OWING 20</TT></TD></TR>
+<TR><TD>From Beta to server</TD><TD><TT>CALL 20</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>OK CALL 20</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Beta CALL 20</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Beta CALL 20</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Showdown (Gamma is being called)...</I></TD><TD></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>SHOW?</TT></TD></TR>
+<TR><TD>From Gamma to server</TD><TD><TT>ONEPAIR 2 Q 8 7</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>OK ONEPAIR 2 Q 8 7</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Gamma ONEPAIR 2 Q 8 7</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>FROM Gamma ONEPAIR 2 Q 8 7</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>BEAT? ONEPAIR 2 Q 8 7</TT></TD></TR>
+<TR><TD>From Beta to server</TD><TD><TT>NO</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>OK NO</TT></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>FROM Beta NO</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>FROM Beta NO</TT></TD></TR>
+<TR><TD COLSPAN=2><I>End of hand...</I></TD><TD></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>WINNER Gamma 170 ONEPAIR 2 Q 8 7</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>WINNER Gamma 170 ONEPAIR 2 Q 8 7</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>WINNER Gamma 170 ONEPAIR 2 Q 8 7</TT></TD></TR>
+<TR><TD COLSPAN=2><I>Next hand starts...</I></TD><TD></TD></TR>
+<TR><TD>From server to Alpha</TD><TD><TT>BUTTON Beta</TT></TD></TR>
+<TR><TD>From server to Beta</TD><TD><TT>BUTTON Beta</TT></TD></TR>
+<TR><TD>From server to Gamma</TD><TD><TT>BUTTON Beta</TT></TD></TR>
+<TR><TD COLSPAN=2><I>...</I></TD><TD></TD></TR>
+</TABLE>
+
+<P>
+<HR>
+<H3><A NAME="revisions">Revision History</A></H3>
+<UL>
+<LI>29 Oct 1999:
+<UL>
+<LI>Protocol extensions for draw and stud poker.
+<LI>Version bump to 2.0 because of this.
+</UL>
+<LI>12 Oct 1999:
+<UL>
+<LI>Fixed a couple of minor typos.
+</UL>
+<LI>16 Oct 1998:
+<UL>
+<LI>Extended FOUROFAKIND, FULLHOUSE, and THREEOFAKIND messages to
+include additional ranks since these are needed to break ties in games
+with common cards.
+</UL>
+<LI>13 Oct 1998:
+<UL>
+<LI>Added maximum number of raises per round to NEWGAME message.
+<LI>Added QUIT messsage for player that unexpectedly quit.
+</UL>
+<LI>26 Sep 1998:
+<UL>
+<LI>Added SHOW message so others can track showdown.
+<LI>Modified OK to include message being ACK'd.
+</UL>
+<LI>25 Sep 1998:
+<UL>
+<LI>Added examples to handtype descriptions.
+<LI>STRADDLE bettor can FOLD.
+<LI>HELLO renamed BUYIN.
+<LI>A few typos.
+</UL>
+<LI>23 Sep 1998: Initial release of IPP v1.0.
+</UL>
+</HTML>

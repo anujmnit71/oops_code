@@ -1,0 +1,219 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-strata: <http://www.architexa.com/rdf/strata#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19mqjbhq9x1 a atxa-core:strataFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node19mqchckpx3761 .
+
+_:node19mqchckpx3761 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#$MyNotepadS> ;
+	atxa-core:containerState "false" , "false" , "false" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:0,false,false,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "0" .
+
+atxa-core:docRoot atxa-core:contains _:node19mqchckpx3762 .
+
+_:node19mqchckpx3762 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.*> ;
+	atxa-core:containerState "true" , "false" , "true" ;
+	atxa-strata:nestedLayerIndexes ":1,false,false,true:1,false,false,true" ;
+	atxa-strata:layerIndex "1" ;
+	atxa-strata:indexWithinLayer "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#javax.*> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#javax.swing> .
+
+_:node19mqchckpx3762 atxa-core:contains _:node19mqchckpx3763 .
+
+_:node19mqchckpx3763 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing> ;
+	atxa-core:containerState "false" , "false" , "true" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:0,false,false,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#javax.swing> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JComponent> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JTextArea> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$Icon> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$Timer> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JList> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$InputMap> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JPanel> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$AbstractAction> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JWindow> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JMenuItem> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JScrollPane> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$SwingConstants> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$TransferHandler> , <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JFrame> .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3764 .
+
+_:node19mqchckpx3764 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JComponent> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:1,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3765 .
+
+_:node19mqchckpx3765 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JTextArea> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:2,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3766 .
+
+_:node19mqchckpx3766 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$Icon> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:3,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3767 .
+
+_:node19mqchckpx3767 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$Timer> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:0,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3768 .
+
+_:node19mqchckpx3768 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JList> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":1,false,false,true:1,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3769 .
+
+_:node19mqchckpx3769 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$InputMap> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":1,false,false,true:2,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3770 .
+
+_:node19mqchckpx3770 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JPanel> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":1,false,false,true:3,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3771 .
+
+_:node19mqchckpx3771 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$AbstractAction> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":1,false,false,true:0,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3772 .
+
+_:node19mqchckpx3772 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JWindow> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":2,false,false,true:1,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3773 .
+
+_:node19mqchckpx3773 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JMenuItem> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":2,false,false,true:2,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3774 .
+
+_:node19mqchckpx3774 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JScrollPane> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":2,false,false,true:3,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3775 .
+
+_:node19mqchckpx3775 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$SwingConstants> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":2,false,false,true:0,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3776 .
+
+_:node19mqchckpx3776 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$TransferHandler> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":3,false,false,true:1,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+_:node19mqchckpx3763 atxa-core:contains _:node19mqchckpx3777 .
+
+_:node19mqchckpx3777 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javax.swing$JFrame> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":3,false,false,true:2,false,false,true:0,true,true,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "-1" .
+
+atxa-core:docRoot atxa-core:contains _:node19mqchckpx3778 .
+
+_:node19mqchckpx3778 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.*> ;
+	atxa-core:containerState "true" , "false" , "true" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:1,false,false,true" ;
+	atxa-strata:layerIndex "1" ;
+	atxa-strata:indexWithinLayer "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.*> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#java.awt.*> .
+
+_:node19mqchckpx3778 atxa-core:contains _:node19mqchckpx3779 .
+
+_:node19mqchckpx3779 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt.*> ;
+	atxa-core:containerState "true" , "false" , "true" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:0,false,false,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.awt.*> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event> .
+
+_:node19mqchckpx3779 atxa-core:contains _:node19mqchckpx3780 .
+
+_:node19mqchckpx3780 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event> ;
+	atxa-core:containerState "true" , "false" , "true" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:0,false,false,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.awt.event> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event$ActionListener> .
+
+_:node19mqchckpx3780 atxa-core:contains _:node19mqchckpx3781 .
+
+_:node19mqchckpx3781 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.awt.event$ActionListener> ;
+	atxa-core:containerState "false" , "true" , "false" ;
+	atxa-strata:nestedLayerIndexes ":0,false,false,true:0,false,false,true" ;
+	atxa-strata:layerIndex "0" ;
+	atxa-strata:indexWithinLayer "0" .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-strata: <http://www.architexa.com/rdf/strata#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+
+_:node19mqjbhq9x1 a atxa-core:strataFile ;
+	atxa-core:contains _:node19mqchckpx3761 , _:node19mqchckpx3764 , _:node19mqchckpx3765 , _:node19mqchckpx3766 , _:node19mqchckpx3767 , _:node19mqchckpx3768 , _:node19mqchckpx3769 , _:node19mqchckpx3770 , _:node19mqchckpx3771 , _:node19mqchckpx3772 , _:node19mqchckpx3773 , _:node19mqchckpx3774 , _:node19mqchckpx3775 , _:node19mqchckpx3776 , _:node19mqchckpx3777 , _:node19mqchckpx3763 , _:node19mqchckpx3762 , _:node19mqchckpx3781 , _:node19mqchckpx3780 , _:node19mqchckpx3779 , _:node19mqchckpx3778 , atxa-core:docRoot , _:node19mqchckpx3761 , _:node19mqchckpx3764 , _:node19mqchckpx3765 , _:node19mqchckpx3766 , _:node19mqchckpx3767 , _:node19mqchckpx3768 , _:node19mqchckpx3769 , _:node19mqchckpx3770 , _:node19mqchckpx3771 , _:node19mqchckpx3772 , _:node19mqchckpx3773 , _:node19mqchckpx3774 , _:node19mqchckpx3775 , _:node19mqchckpx3776 , _:node19mqchckpx3777 , _:node19mqchckpx3763 , _:node19mqchckpx3762 , _:node19mqchckpx3781 , _:node19mqchckpx3780 , _:node19mqchckpx3779 , _:node19mqchckpx3778 , atxa-core:docRoot .
+

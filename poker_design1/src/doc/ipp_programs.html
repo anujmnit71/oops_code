@@ -1,0 +1,125 @@
+<HTML>
+<HEAD>
+<TITLE>Running a Poker Game Using IPP Tools</TITLE>
+</HEAD>
+<BODY>
+<H1>Running a Poker Game Using IPP Tools</H1>
+<P>
+This document describes how to use the Internet Poker Protocol (IPP)
+tools to run a game.
+<P>
+<H2>Start the server</H2>
+
+IPP services are provided by the IPP server, <TT>ippd</TT>. During a
+tournament, we will look after starting a server for the tournament.
+However, during testing you need to start your own server every time
+you want to play a game. The server only manages one game at a time,
+and only plays one game per game.
+<P>
+To start the server, you run the program:
+<PRE>
+      /u/cs400/poker/bin/ippd
+</PRE>
+By default, the server will listen for new connections on port 9898.
+Since only one program can listen on a TCP port at one time, you will
+probably need to use a different port number for your testing. I
+suggest that if you are in group <B>N</B> for (<B>N</B> from 1 to 4),
+you use port 9898+<B>N</B>. You pass this port number to <TT>ippd</TT>
+using the <TT>-port</TT> option, as in:
+<PRE>
+      /u/cs400/poker/bin/ippd -port 9899
+</PRE>
+<P>
+If you are running several programs with windows, you might find the
+``<TT>-size small</TT>'' option useful to fit them all on your screen.
+For more information and options, see <A HREF="ippd.txt">the
+<TT>ippd</TT> manpage</A>.
+
+<H2>Start some clients</H2>
+
+With the server running, it is now waiting for clients to connect.
+These clients can include any combination of the following:
+<UL>
+<LI>Your poker-playing program. Of course, this is the client with
+which you should be most concerned.
+<LI>We have provided simple clients written in several different
+languages (Perl, C, C++, Java, and Lisp). These let you see the server's
+messages and respond by typing back to the server. The sources to
+these programs are available and can serve as (part of) the foundation
+of your own client.
+<LI>We have also developed two clients for use in tournaments, one
+that plays by itself (<TT>ippplayer</TT>) and one that lets people
+play (<TT>ipphuman</TT>). These clients may be useful for running test
+games, but their source is not available and you shouldn't try to use
+them other than as competition.
+</UL>
+<P>
+During a tournament, you will start your client and connect to the main
+server. During testing, you will need to start several different
+clients (including your own) and connect them to the server you
+started above.
+<P>
+In what follows, we will assume you are running several copies of
+<TT>ippplayer</TT>. Typically you would fire up a few <TT>xterm</TT>'s
+and start a client in each window. The procedure for running the
+clients differs slightly depending on whether the clients are on the
+same machine as the server or not (and you should support similar
+flexibility in your client).
+<P>
+To start the automatic player (the human player interface is similar),
+you need to specify the player's name and their buyin amount on the
+command-line, as in:
+<PRE>
+      /u/cs400/poker/bin/ippplayer George 1000
+</PRE>
+If your server is not running on the default port (as described
+above), you need to tell the client at which TCP port to contact the
+server using the <TT>-server</TT> option, as in:
+<PRE>
+      /u/cs400/poker/bin/ippplayer -server localhost:9899 George 1000
+</PRE>
+If furthermore your server is running on a different machine that the
+client, you need to specify the hostname in the <TT>-server</TT>
+option, as in:
+<PRE>
+      /u/cs400/poker/bin/ippplayer -server micro:9899 George 1000
+</PRE>
+<P>
+As with <TT>ippd</TT>, the clients support the ``<TT>-size
+small</TT>'' option if you want to try to fit more of them on the
+screen. See the manpages for <A
+HREF="ippplayer.txt"><TT>ippplayer</TT></A> and <A
+HREF="ipphuman.txt"><TT>ipphuman</TT></A> for more options.
+<P>
+<B>Note:</B> The IPP server prints all message traffic to
+standard output. If you want to save this for future debugging,
+do something like
+<PRE>
+      /u/cs400/poker/bin/ippplayer ...args... | tee ippd.log
+</PRE>
+The <TT>tee</TT> program copies its standard input to both standard
+output and to the given file. Very handy. Leave standard error
+unpiped to make sure you see error messages from the server.
+
+<H2>Start the game</H2>
+
+Once your clients have connected (you can see them on the server's
+display and in the messages printed by the server to standard output),
+start the game by pressing the ``Start'' button. This will announce
+the set of players to all the clients and start the first hand (with
+the <B>BUTTON</B> message, then the <B>ANTE</B>, and so on).
+
+<H2>Ending the game</H2>
+
+There is no elegant way to terminate the server. Just kill it by
+typing Control-C in its window. All clients should also terminate,
+except for clients that are blocked waiting for input. These will have
+to be killed by hand.
+<P>
+Be sure to not leave the server running or you will be unable to
+reallocate the port the next time you try to start the server.
+<P>
+<HR>
+<ADDRESS>George Ferguson</ADDRESS>
+</BODY>
+</HTML>
