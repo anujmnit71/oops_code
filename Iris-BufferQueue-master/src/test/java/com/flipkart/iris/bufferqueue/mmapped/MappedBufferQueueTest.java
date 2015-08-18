@@ -16,45 +16,46 @@
 
 package com.flipkart.iris.bufferqueue.mmapped;
 
-import com.flipkart.iris.bufferqueue.BufferQueueEntry;
-import com.google.common.base.Optional;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.util.UUID;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.flipkart.iris.bufferqueue.BufferQueueEntry;
+import com.google.common.base.Optional;
 
 public class MappedBufferQueueTest {
 
-    File file;
-    MappedBufferQueue bufferQueue;
+	File file;
+	MappedBufferQueue bufferQueue;
 
-    @Before
-    public void setUp() throws Exception {
-        file = File.createTempFile("bufferqueue-test", ".bq");
-        file.delete();
-        int maxDataLength = 256 * 1024;
-        long numMessages = 1000;
-        MappedBufferQueueFactory.format(file, maxDataLength, numMessages);
-        bufferQueue = MappedBufferQueueFactory.getInstance(file);
-    }
+	@Before
+	public void setUp() throws Exception {
+		file = File.createTempFile("bufferqueue-test", ".bq");
+		file.delete(); //delete file since again created in touch file 
+		int maxDataLength = 256 * 1024;
+		long numMessages = 1000;
+		MappedBufferQueueFactory.format(file, maxDataLength, numMessages);
+		bufferQueue = MappedBufferQueueFactory.getInstance(file);
+	}
 
-    @After
-    public void tearDown() throws Exception {
-        file.delete();
-    }
+	@After
+	public void tearDown() throws Exception {
+		file.delete();
+	}
 
-    @Test
-    public void testSimplePublishConsume() throws Exception {
-        byte[] msg = UUID.randomUUID().toString().getBytes();
-        bufferQueue.publish(msg);
-        BufferQueueEntry bufferQueueEntry = bufferQueue.consume().get();
-        assertArrayEquals(msg, bufferQueueEntry.get());
-        bufferQueueEntry.markConsumed();
-        assertEquals(Optional.<BufferQueueEntry>absent(), bufferQueue.consume());
-    }
+	@Test
+	public void testSimplePublishConsume() throws Exception {
+		byte[] msg = UUID.randomUUID().toString().getBytes();
+		bufferQueue.publish(msg);
+		BufferQueueEntry bufferQueueEntry = bufferQueue.consume().get();
+		assertArrayEquals(msg, bufferQueueEntry.get());
+		bufferQueueEntry.markConsumed();
+		assertEquals(Optional.<BufferQueueEntry>absent(), bufferQueue.consume());
+	}
 }

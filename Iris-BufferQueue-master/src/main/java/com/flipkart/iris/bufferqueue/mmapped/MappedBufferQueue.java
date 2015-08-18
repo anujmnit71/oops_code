@@ -16,12 +16,6 @@
 
 package com.flipkart.iris.bufferqueue.mmapped;
 
-import com.flipkart.iris.bufferqueue.BufferQueue;
-import com.flipkart.iris.bufferqueue.BufferQueueEntry;
-import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,6 +27,12 @@ import java.nio.channels.FileLock;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.flipkart.iris.bufferqueue.BufferQueue;
+import com.flipkart.iris.bufferqueue.BufferQueueEntry;
+import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+
 /**
  * A BufferQueue implementation using a memory mapped file.
  *
@@ -40,239 +40,213 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class MappedBufferQueue implements BufferQueue {
 
-    /**
-     * Maximum value of the max data length that can be set.
-     *
-     * @see #format(java.nio.ByteBuffer, int)
-     */
-    public static final int MAX_MAX_DATA_LENGTH = 1024 * 1024; // 1mb
+	/**
+	 * Maximum value of the max data length that can be set.
+	 *
+	 * @see #format(java.nio.ByteBuffer, int)
+	 */
+	public static final int MAX_MAX_DATA_LENGTH = 1024 * 1024; // 1mb
 
-    /**
-     * Number of milliseconds to wait between syncing the cursors to
-     * the header. If the application crashes, messages corresponding to
-     * the unsynced cursors may be lost.
-     *
-     * @see MappedBufferQueue.HeaderSyncThread
-     */
-    public static final long SYNC_INTERVAL = 1000; // milliseconds
+	/**
+	 * Number of milliseconds to wait between syncing the cursors to
+	 * the header. If the application crashes, messages corresponding to
+	 * the unsynced cursors may be lost.
+	 *
+	 * @see MappedBufferQueue.HeaderSyncThread
+	 */
+	public static final long SYNC_INTERVAL = 1000; // milliseconds
 
-    private final Integer maxDataLength;
-    private final AtomicLong readCursor = new AtomicLong(1);
-    private final AtomicLong writeCursor = new AtomicLong(1);
+	private final Integer maxDataLength;
+	private final AtomicLong readCursor = new AtomicLong(1);
+	private final AtomicLong writeCursor = new AtomicLong(1);
 
-    private final File file;
-    private final ByteBuffer fileBuffer;
+	private final FileChannel fileChannel;
 
-    private final FileChannel fileChannel;
+	private final MappedHeader mappedHeader;
+	private final MappedEntries mappedEntries;
 
-    private final MappedHeader mappedHeader;
-    private final MappedEntries mappedEntries;
+	private final HeaderSyncThread headerSyncThread;
 
-    private final HeaderSyncThread headerSyncThread;
+	/**
+	 * Computes the file size to be used given the max data dataLength
+	 * and number of messages.
+	 *
+	 * @param maxDataLength The max dataLength of data that can be published to the BufferQueue
+	 * @param numMessages The maximum number unconsumed messages that the buffer will hold
+	 * @return The computer file size
+	 */
+	static long fileSize(int maxDataLength, long numMessages) {
+		return MappedHeader.HEADER_LENGTH
+				+ BufferQueueEntry.calculateEntryLength(maxDataLength) * numMessages;
+	}
 
-    /**
-     * Computes the file size to be used given the max data dataLength
-     * and number of messages.
-     *
-     * @param maxDataLength The max dataLength of data that can be published to the BufferQueue
-     * @param numMessages The maximum number unconsumed messages that the buffer will hold
-     * @return The computer file size
-     */
-    static long fileSize(int maxDataLength, long numMessages) {
-        return MappedHeader.HEADER_LENGTH
-                + BufferQueueEntry.calculateEntryLength(maxDataLength) * numMessages;
-    }
+	MappedBufferQueue(File file, ByteBuffer fileBuffer) throws FileNotFoundException, IOException {
 
-    MappedBufferQueue(File file, ByteBuffer fileBuffer) throws FileNotFoundException, IOException {
+		fileBuffer = fileBuffer.duplicate();
 
-        fileBuffer = fileBuffer.duplicate();
+		RandomAccessFile raf = new RandomAccessFile(file, "rw");
+		this.fileChannel = raf.getChannel();
 
-        this.file = file;
-        this.fileBuffer = fileBuffer;
+		this.mappedHeader = getHeaderBuffer(fileBuffer);
+		this.mappedEntries = getEntriesBuffer(fileBuffer, mappedHeader);
 
-        RandomAccessFile raf = new RandomAccessFile(file, "rw");
-        this.fileChannel = raf.getChannel();
+		maxDataLength = mappedHeader.maxDataLength();
+		readCursor.set(mappedHeader.readCursor());
+		writeCursor.set(mappedHeader.writeCursor());
 
-        this.mappedHeader = getHeaderBuffer(fileBuffer);
-        this.mappedEntries = getEntriesBuffer(fileBuffer, mappedHeader);
+		headerSyncThread = new HeaderSyncThread(SYNC_INTERVAL);
+		headerSyncThread.start();
+	}
 
-        maxDataLength = mappedHeader.maxDataLength();
-        readCursor.set(mappedHeader.readCursor());
-        writeCursor.set(mappedHeader.writeCursor());
+	private static MappedHeader getHeaderBuffer(ByteBuffer fileBuffer) {
+		ByteBuffer headerBuffer = fileBuffer.duplicate();
+		headerBuffer.limit(MappedHeader.HEADER_LENGTH);
+		headerBuffer.rewind();
+		return new MappedHeader(headerBuffer);
+	}
 
-        headerSyncThread = new HeaderSyncThread(SYNC_INTERVAL);
-        headerSyncThread.start();
-    }
+	private static MappedEntries getEntriesBuffer(ByteBuffer fileBuffer, MappedHeader mappedHeader) {
+		fileBuffer.position(MappedHeader.HEADER_LENGTH);
+		ByteBuffer entriesBuffer = fileBuffer.slice();
+		entriesBuffer.rewind();
+		return new MappedEntries(entriesBuffer, mappedHeader);
+	}
 
-    private static MappedHeader getHeaderBuffer(ByteBuffer fileBuffer) {
-        ByteBuffer headerBuffer = fileBuffer.duplicate();
-        headerBuffer.limit(MappedHeader.HEADER_LENGTH);
-        headerBuffer.rewind();
-        return new MappedHeader(headerBuffer);
-    }
+	static void format(ByteBuffer fileBuffer, int maxDataLength) {
+		Preconditions.checkArgument(maxDataLength < MAX_MAX_DATA_LENGTH
+				, "maxDataLength must be <= %s", MAX_MAX_DATA_LENGTH);
 
-    private static MappedEntries getEntriesBuffer(ByteBuffer fileBuffer, MappedHeader mappedHeader) {
-        fileBuffer.position(MappedHeader.HEADER_LENGTH);
-        ByteBuffer entriesBuffer = fileBuffer.slice();
-        entriesBuffer.rewind();
-        return new MappedEntries(entriesBuffer, mappedHeader);
-    }
+		MappedHeader headerBuffer = getHeaderBuffer(fileBuffer);
+		headerBuffer.format(maxDataLength);
 
-    static void format(ByteBuffer fileBuffer, int maxDataLength) {
-        Preconditions.checkArgument(maxDataLength < MAX_MAX_DATA_LENGTH
-                , "maxDataLength must be <= %s", MAX_MAX_DATA_LENGTH);
+		MappedEntries entriesBuffer = getEntriesBuffer(fileBuffer, headerBuffer);
+		entriesBuffer.format();
+	}
 
-        MappedHeader headerBuffer = getHeaderBuffer(fileBuffer);
-        headerBuffer.format(maxDataLength);
+	public int maxDataLength() {
+		return maxDataLength;
+	}
 
-        MappedEntries entriesBuffer = getEntriesBuffer(fileBuffer, headerBuffer);
-        entriesBuffer.format();
-    }
+	public Optional<BufferQueueEntry> next() {
+		if (writeCursor.get() - readCursor.get() >= capacity()) {
+			forwardReadCursor();
+			if (writeCursor.get() - readCursor.get() >= capacity()) {
+				return Optional.absent();
+			}
+		}
 
-    @Override
-    public int maxDataLength() {
-        return maxDataLength;
-    }
+		long n = writeCursor.getAndIncrement();
+		return Optional.of(mappedEntries.makeEntry(n));
+	}
 
-    @Override
-    public Optional<BufferQueueEntry> next() {
-        if (writeCursor.get() - readCursor.get() >= capacity()) {
-            forwardReadCursor();
-            if (writeCursor.get() - readCursor.get() >= capacity()) {
-                return Optional.absent();
-            }
-        }
+	public boolean publish(byte[] data) throws BufferOverflowException {
+		Optional<BufferQueueEntry> entry = next();
+		if (!entry.isPresent()) return false;
 
-        long n = writeCursor.getAndIncrement();
-        return Optional.of(mappedEntries.makeEntry(n));
-    }
+		try {
+			entry.get().set(data);
+		}
+		finally {
+			entry.get().markPublished();
+		}
+		return true;
+	}
 
-    @Override
-    public boolean publish(byte[] data) throws BufferOverflowException {
-        Optional<BufferQueueEntry> entry = next();
-        if (!entry.isPresent()) return false;
+	public long forwardReadCursor() {
+		long readCursorVal;
+		while ((readCursorVal = readCursor.get()) < writeCursor.get()) {
+			if (readCursorVal > 0) {
+				BufferQueueEntry entry = mappedEntries.getEntry(readCursorVal);
+				if (!entry.isPublished() || !entry.isConsumed()) {
+					break;
+				}
+			}
+			readCursor.compareAndSet(readCursorVal, readCursorVal + 1);
+		}
+		return readCursorVal;
+	}
 
-        try {
-            entry.get().set(data);
-        }
-        finally {
-            entry.get().markPublished();
-        }
-        return true;
-    }
+	public Optional<BufferQueueEntry> consume() {
+		long readCursorVal = forwardReadCursor();
+		if (readCursorVal < writeCursor.get()) {
+			BufferQueueEntry entry = mappedEntries.getEntry(readCursorVal);
+			if (entry.isPublished()) {
+				return Optional.of(entry);
+			}
+		}
+		return Optional.absent();
+	}
 
-    public long forwardReadCursor() {
-        long readCursorVal;
-        while ((readCursorVal = readCursor.get()) < writeCursor.get()) {
-            if (readCursorVal > 0) {
-                BufferQueueEntry entry = mappedEntries.getEntry(readCursorVal);
-                if (!entry.isPublished() || !entry.isConsumed()) {
-                    break;
-                }
-            }
-            readCursor.compareAndSet(readCursorVal, readCursorVal + 1);
-        }
-        return readCursorVal;
-    }
+	public List<BufferQueueEntry> consume(int n) {
+		List<BufferQueueEntry> bufferQueueEntries = Lists.newArrayList();
 
-    @Override
-    public Optional<BufferQueueEntry> consume() {
-        long readCursorVal = forwardReadCursor();
-        if (readCursorVal < writeCursor.get()) {
-            BufferQueueEntry entry = mappedEntries.getEntry(readCursorVal);
-            if (entry.isPublished()) {
-                return Optional.of(entry);
-            }
-        }
-        return Optional.absent();
-    }
+		long readCursorVal = forwardReadCursor();
+		for (int i = 0; i < Math.min(n, writeCursor.get() - readCursorVal); i++) {
+			BufferQueueEntry entry = mappedEntries.getEntry(readCursorVal + i);
+			if (!entry.isPublished()) break;
+			bufferQueueEntries.add(entry);
+		}
 
-    @Override
-    public List<BufferQueueEntry> consume(int n) {
-        List<BufferQueueEntry> bufferQueueEntries = Lists.newArrayList();
+		return bufferQueueEntries;
+	}
 
-        long readCursorVal = forwardReadCursor();
-        for (int i = 0; i < Math.min(n, writeCursor.get() - readCursorVal); i++) {
-            BufferQueueEntry entry = mappedEntries.getEntry(readCursorVal + i);
-            if (!entry.isPublished()) break;
-            bufferQueueEntries.add(entry);
-        }
+	public long capacity() {
+		return mappedEntries.capacity;
+	}
 
-        return bufferQueueEntries;
-    }
+	public long size() {
+		return (writeCursor.get() - readCursor.get());
+	}
 
-    @Override
-    public long capacity() {
-        return mappedEntries.capacity;
-    }
+	public boolean isFull() {
+		return size() == capacity();
+	}
 
-    @Override
-    public long size() {
-        return (writeCursor.get() - readCursor.get());
-    }
+	public boolean isEmpty() {
+		return size() == 0;
+	}
 
-    @Override
-    public boolean isFull() {
-        return size() == capacity();
-    }
+	private class HeaderSyncThread extends Thread {
+		private final long waitMillies;
+		private volatile boolean isEnabled = true;
 
-    @Override
-    public boolean isEmpty() {
-        return size() == 0;
-    }
+		private HeaderSyncThread(long waitMillies) {
+			this.waitMillies = waitMillies;
+			this.setDaemon(true);
+		}
 
-    private class HeaderSyncThread extends Thread {
-        private final long waitMillies;
-        private volatile boolean isEnabled = true;
+		@Override
+		public void run() {
+			while (true) {
+				synchronized (mappedHeader) {
+					if (isEnabled) {
+						try {
+							FileLock lock = fileChannel.lock();
+							try {
+								long currentWriteCursor = writeCursor.get();
+								long persistedWriteCursor = mappedHeader.writeCursor(currentWriteCursor);
+								writeCursor.compareAndSet(currentWriteCursor, persistedWriteCursor);
 
-        private HeaderSyncThread(long waitMillies) {
-            this.waitMillies = waitMillies;
-            this.setDaemon(true);
-        }
-
-        @Override
-        public void run() {
-            while (true) {
-                synchronized (mappedHeader) {
-                    if (isEnabled) {
-                        try {
-                            FileLock lock = fileChannel.lock();
-                            try {
-                                long currentWriteCursor = writeCursor.get();
-                                long persistedWriteCursor = mappedHeader.writeCursor(currentWriteCursor);
-                                writeCursor.compareAndSet(currentWriteCursor, persistedWriteCursor);
-
-                                long currentReadCursor = readCursor.get();
-                                long persistedReadCursor = mappedHeader.readCursor(currentReadCursor);
-                                readCursor.compareAndSet(currentReadCursor, persistedReadCursor);
-                            }
-                            finally {
-                                lock.release();
-                            }
-                        }
-                        catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    try {
-                        mappedHeader.wait(waitMillies);
-                    }
-                    catch (InterruptedException e) {
-                        break;
-                    }
-                }
-            }
-        }
-
-        public void disable() {
-            isEnabled = false;
-        }
-
-        public void enable() {
-            isEnabled = true;
-            synchronized (this) {
-                notifyAll();
-            }
-        }
-    }
+								long currentReadCursor = readCursor.get();
+								long persistedReadCursor = mappedHeader.readCursor(currentReadCursor);
+								readCursor.compareAndSet(currentReadCursor, persistedReadCursor);
+							}
+							finally {
+								lock.release();
+							}
+						}
+						catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					try {
+						mappedHeader.wait(waitMillies);
+					}
+					catch (InterruptedException e) {
+						break;
+					}
+				}
+			}
+		}
+	}
 }
